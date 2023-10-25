@@ -1,0 +1,27 @@
+div {
+    display: inline-block;
+}
+
+.verde {
+    width: 300px;
+    height: 300px;
+    background-color: green;
+    position: relative;
+    top: 100px;
+}
+
+.albastru {
+    width: 300px;
+    height: 300px;
+    background-color: blue;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.4;
+}
+
+.rosu {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+}
