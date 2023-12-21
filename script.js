@@ -1,45 +1,41 @@
-import { animals } from "./animals";
-import React from "react";
-import { createRoot } from "react-dom/client";
-const container = document.getElementById("app");
-const root = createRoot(container);
-const title = "";
-const background = (
-  <img className="background" alt="ocean" src="/images/ocean.jpg" />
-);
-const images = [];
-for (let animal in animals) {
-  const image = (
-    <img
-      onClick={displayFact}
-      key={animal}
-      className="animal"
-      alt={animal}
-      src={animals[animal].image}
-      aria-label={animal}
-      role="button"
-    />
-  );
+const menu = document.createElement("div");
+const span = document.createElement("span");
+const title = document.createElement("h2");
+const list = document.createElement("ul");
+menu.classList.add("dropdown");
+title.classList.add("icon");
+list.classList.add("menu");
+title.textContent = "Dropdown ";
+span.textContent = "∆";
 
-  images.push(image);
-}
+const arrayList = ["Item 1", "Item 2", "Item 3", "Item 4"];
+arrayList.forEach(function (e) {
+  let li = document.createElement("li");
+  li.textContent = e;
+  list.appendChild(li);
+});
 
-function displayFact(e) {
-  const animal = e.target.alt;
-  const index = Math.floor(Math.random() * animals[animal].facts.length);
-  const funFact = animals[animal].facts[index];
-  const p = document.getElementById("fact");
-  p.innerHTML = funFact;
-}
+document.body.appendChild(menu);
+menu.appendChild(title);
+title.appendChild(span);
+menu.appendChild(list);
 
-const showBackground = true;
-const animalFacts = (
-  <div>
-    <h1>{title || "Click an animal for a fun fact"}</h1>
-    {showBackground && background}
-    <p id="fact"></p>
-    <div className="animals">{images}</div>
-  </div>
-);
+let dropdown = document.querySelector(".dropdown");
 
-root.render(animalFacts);
+dropdown.addEventListener("click", (e) => {
+  if (dropdown.contains(list)) {
+    dropdown.removeChild(list);
+    span.style.transform = "rotate(180deg)";
+  } else {
+    dropdown.appendChild(list);
+    span.style.transform = "rotate(0deg)";
+  }
+});
+
+// dropdown.addEventListener('mouseenter', () => {
+//   dropdown.classList.remove('closed');
+// });
+
+// dropdown.addEventListener('mouseleave', () => {
+//   dropdown.classList.add('closed');
+// });
